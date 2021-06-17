@@ -8,12 +8,18 @@ int main()
     s->push(5);
     s->push(15);
     s->push(7);
-    int elemtop, elempop;
-    s->top(elemtop);
-    s->pop(elempop);
-    std::cout << elemtop << elempop << std::endl;
-
+    s->push(8);
+    s->push(21); // cannot push, stack is full
+    int element;
+    s->top(element);
+    std::cout << element << std::endl; //top element is 8
+    s->pop(element);
+    std::cout << element << std::endl; //pop element is 8
+    s->pop(element);
+    std::cout << element << std::endl; //pop element is 7
+    s->top(element);
+    std::cout << element << std::endl; //top element is 15
     /*  s->print(); */
-
+    delete s;
     return 0;
 }
