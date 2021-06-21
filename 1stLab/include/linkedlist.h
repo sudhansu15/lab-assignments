@@ -6,12 +6,8 @@ class node
 public:
     int data;
     node *next;
-    node() : next(nullptr) {}
-    node(int data, node *next) : data(data), next(next) {}
-    ~node()
-    {
-        delete next;
-    }
+    node() : next(nullptr) {}                              //default constructor
+    node(int data, node *next) : data(data), next(next) {} //parameterized constructor
 };
 
 class linkedlist
@@ -31,6 +27,14 @@ public:
     int removeFromTail();
     void remove(int data);
     bool search(int data);
-    bool retrieve(int data, node *dataOutptr);
+    bool retrieve(int data, node *&dataOutptr);
     void traverse(char separator = ' ');
+    node *gethead() //HEAD GETTER FOR STACK IMPLEMENTATION
+    {
+        return head;
+    }
+    node *gettail() //TAIL GETTER FOR QUEUE IMPLEMENTATION
+    {
+        return tail;
+    }
 };

@@ -26,27 +26,27 @@ void linkedlist::addToHead(int data)
     {
         tail = head;
     }
-    delete NewNode;
 }
 
 void linkedlist::addToTail(int data)
 {
     node *newnode = new node(data, nullptr);
-    tail->next = newnode;
-    tail = tail->next;
     if (head == nullptr)
     {
-        head = tail;
+        head = tail = newnode;
     }
+    else
+    {
 
-    delete newnode;
+        tail->next = newnode;
+        tail = tail->next;
+    }
 }
 
 void linkedlist::add(int data, node *predecessor)
 {
     node *newnode = new node(data, predecessor->next);
     predecessor->next = newnode;
-    delete newnode;
 }
 
 int linkedlist::removeFromHead()
@@ -106,13 +106,16 @@ bool linkedlist::search(int data)
     {
         temp = temp->next;
     }
-    if (temp->data == data)
+    if (temp == nullptr)
     {
-        return true;
+        std::cout << "Did not find the element:" << data << std::endl;
+        return false;
     }
     else
     {
-        return false;
+
+        std::cout << "found the element:" << data << std::endl;
+        return true;
     }
 }
 
@@ -153,12 +156,11 @@ void linkedlist::remove(int data)
                     tail = prev;
                 }
             }
-            delete prev;
         }
     }
 }
 
-bool linkedlist::retrieve(int data, node *dataOutPtr)
+bool linkedlist::retrieve(int data, node *&dataOutPtr)
 {
     node *newnode = head;
     while (newnode != nullptr && newnode->data != data)
@@ -167,14 +169,15 @@ bool linkedlist::retrieve(int data, node *dataOutPtr)
     }
     if (newnode == nullptr)
     {
+        std::cout << "couldn't find:" << data << std::endl;
         return false;
     }
     else
     {
         dataOutPtr = newnode;
+        std::cout << "found data:" << data << std::endl;
         return true;
     }
-    delete newnode;
 }
 void linkedlist::traverse(char separator)
 {
