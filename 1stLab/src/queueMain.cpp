@@ -17,7 +17,6 @@ int main()
     std::cout << "front element is " << i << std::endl;
     q->back(i);
     std::cout << "back element is " << i << std::endl;
-
     q->dequeue(i);
     std::cout << "dequeued element is " << i << std::endl;
     q->dequeue(i);

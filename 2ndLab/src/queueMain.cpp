@@ -2,7 +2,7 @@
 #include "carrayqueue.h"
 int main()
 {
-    queue *q = new carrayqueue(5); //first value of array is always empty so 4 elements in queue
+    queue<int> *q = new carrayqueue<int>(5); //first value of array is always empty so 4 elements in queue
     q->enqueue(9);
     q->enqueue(12);
     q->enqueue(7);
@@ -25,5 +25,29 @@ int main()
     q->back(element);
     std::cout << element << std::endl; //now back element is 16
     delete q;
+
+    queue<char> *c = new carrayqueue<char>(5); //first value of array is always empty so 4 elements in queue
+    c->enqueue('a');
+    c->enqueue('e');
+    c->enqueue('i');
+    c->enqueue('o');
+    c->enqueue('u'); //queue is full
+    char elem;
+    c->front(elem);
+    std::cout << elem << std::endl; //front element is a
+    c->back(elem);
+    std::cout << elem << std::endl; //back element is o
+    c->dequeue(elem);
+    std::cout << elem << std::endl; //dequeued element a
+    c->dequeue(elem);
+    std::cout << elem << std::endl; //dequeued element e
+    c->enqueue('p');
+    c->enqueue('q');
+    c->front(elem);
+    std::cout << elem << std::endl; //now front element is i
+    c->back(elem);
+    std::cout << elem << std::endl; //now back element is q
+    delete q;
+
     return 0;
 }

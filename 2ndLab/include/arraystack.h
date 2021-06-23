@@ -1,10 +1,11 @@
 #include <iostream>
 #include "stack.h"
 
-class arraystack : public stack
+template <class T>
+class arraystack : public stack<T>
 {
 private:
-    int *data;
+    T *data;
     int topIndex;
     int maxStackSize;
 
@@ -16,28 +17,31 @@ public:
     }
     bool isEmpty() const;
     bool isFull() const;
-    bool push(const int &element);
-    bool pop(int &element);
-    bool top(int &element) const;
+    bool push(const T &element);
+    bool pop(T &element);
+    bool top(T &element) const;
     /*   void print(); */
 };
 
-arraystack::arraystack(int size)
+template <class T>
+arraystack<T>::arraystack(int size)
 {
     this->maxStackSize = size;
     this->topIndex = -1;
-    this->data = new int[size];
+    this->data = new T[size];
 }
-bool arraystack::isEmpty() const
+template <class T>
+bool arraystack<T>::isEmpty() const
 {
     return topIndex < 0;
 }
-bool arraystack::isFull() const
+template <class T>
+bool arraystack<T>::isFull() const
 {
     return topIndex == maxStackSize - 1;
 }
-
-bool arraystack::push(const int &element)
+template <class T>
+bool arraystack<T>::push(const T &element)
 {
     if (!isFull())
     {
@@ -51,7 +55,8 @@ bool arraystack::push(const int &element)
         return false;
     }
 }
-bool arraystack::pop(int &element)
+template <class T>
+bool arraystack<T>::pop(T &element)
 {
     if (!isEmpty())
     {
@@ -64,7 +69,8 @@ bool arraystack::pop(int &element)
         return false;
     }
 }
-bool arraystack::top(int &element) const
+template <class T>
+bool arraystack<T>::top(T &element) const
 {
     if (!isEmpty())
     {

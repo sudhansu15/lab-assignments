@@ -1,10 +1,11 @@
 #include <iostream>
 #include "queue.h"
 
-class carrayqueue : public queue
+template <class T>
+class carrayqueue : public queue<T>
 {
 private:
-    int *data;
+    T *data;
     int maxArraySize;
     int frontelem;
     int rearelem;
@@ -17,28 +18,31 @@ public:
     }
     bool isEmpty() const;
     bool isFull() const;
-    bool front(int &element) const;
-    bool back(int &element) const;
-    bool enqueue(const int &element);
-    bool dequeue(int &element);
+    bool front(T &element) const;
+    bool back(T &element) const;
+    bool enqueue(const T &element);
+    bool dequeue(T &element);
 };
-
-carrayqueue::carrayqueue(int maxArraySize)
+template <class T>
+carrayqueue<T>::carrayqueue(int maxArraySize)
 {
     this->maxArraySize = maxArraySize;
     this->frontelem = 0;
     this->rearelem = 0;
-    this->data = new int[maxArraySize];
+    this->data = new T[maxArraySize];
 }
-bool carrayqueue::isEmpty() const
+template <class T>
+bool carrayqueue<T>::isEmpty() const
 {
     return frontelem == rearelem;
 }
-bool carrayqueue::isFull() const
+template <class T>
+bool carrayqueue<T>::isFull() const
 {
     return frontelem == (rearelem + 1) % maxArraySize;
 }
-bool carrayqueue::front(int &element) const
+template <class T>
+bool carrayqueue<T>::front(T &element) const
 {
     if (!isEmpty())
     {
@@ -51,7 +55,8 @@ bool carrayqueue::front(int &element) const
         return false;
     }
 }
-bool carrayqueue::back(int &element) const
+template <class T>
+bool carrayqueue<T>::back(T &element) const
 {
     if (!isEmpty())
     {
@@ -64,7 +69,8 @@ bool carrayqueue::back(int &element) const
         return false;
     }
 }
-bool carrayqueue::enqueue(const int &element)
+template <class T>
+bool carrayqueue<T>::enqueue(const T &element)
 {
     if (!isFull())
     {
@@ -78,7 +84,8 @@ bool carrayqueue::enqueue(const int &element)
         return false;
     }
 }
-bool carrayqueue::dequeue(int &element)
+template <class T>
+bool carrayqueue<T>::dequeue(T &element)
 {
     if (!isEmpty())
     {

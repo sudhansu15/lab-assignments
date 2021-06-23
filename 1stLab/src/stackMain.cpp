@@ -5,7 +5,6 @@
 
 int main()
 {
-
     int i;
     stack *s = new linkedliststack();
     s->top(i);
@@ -22,8 +21,7 @@ int main()
     std::cout << "popped element is :" << i << std::endl;
     s->top(i);
     std::cout << "top element is " << i << std::endl;
-
-    delete[] s;
+    delete s;
 
     return 0;
 }
